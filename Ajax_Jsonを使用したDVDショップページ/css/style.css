@@ -1,0 +1,194 @@
+@charset "UTF-8";
+
+body {
+    margin: 0 auto;
+    width: 90%;
+}
+img {
+    max-width: 100%;
+}
+h1 {
+    text-align: center;
+    font-size: 22px;
+}
+.control-btn {
+}
+/* 削除ボタン～非アクティブ */
+.index-delete-btn {
+    background-color: #8a8282; /* 非アクティブな背景色 */
+    color: black; /* ボタンのテキスト色 */
+}
+
+/* 削除ボタン～アクティブ */
+.delete-btn-active {
+    background-color: rgb(245, 84, 84); /* アクティブな背景色 */
+    color: white; /* ボタンのテキスト色 */
+}
+
+#product-list {
+    margin: 0 auto; /* 左右中央に配置 */
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center; /* 左右中央に配置 */
+}
+
+th {
+    background-color: #f2f2f2;
+    vertical-align: middle; /* 上下中央に配置 */
+}
+
+td:first-child {
+    text-align: left; /* 左寄せ */
+}
+
+td:nth-child(2), td:nth-child(7) { /* 商品ID列 *//* サムネイル列 */
+    text-align: center; /* 中央揃え */
+    vertical-align: middle; /* 上下中央に配置 */
+}
+.product-table td, .product-table th {
+    vertical-align: middle; /* テキストを上下中央に配置 */
+}
+/* //////////////////////////////////////////////サムネイルの画像サイズ/////////////// */
+.product-table img {
+    width: 50px; /* 画像の最大幅を指定 */
+    height: auto;
+}
+/* ///////////////////////////////////////////////////////////////////////////////// */
+
+
+/*///////////////////////////////////////////////////////////////////////////////////*/
+/*//　登録画面　//////////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////////////////////////////////////////////////*/
+#item-regist-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 {
+    text-align: center;
+  }
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  input[type="text"],
+  input[type="number"],
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  select {
+    appearance: none;
+  }
+  .error {
+    color: red;
+    font-size: 12px;
+    margin-top: -10px;
+    margin-bottom: 5px;
+  }
+  #register-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #ccc; /* 初期はグレー */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  #register-btn.active {
+    background-color: #3498db; /* アクティブ時は青色 */
+  }
+  #register-btn:disabled {
+    cursor: not-allowed; /* ボタンが非アクティブの場合はカーソルを変更 */
+  }
+  
+
+/*///////////////////////////////////////////////////////////////////////////////////*/
+/*//　検索画面　//////////////////////////////////////////////////////////////////////*/
+/*///////////////////////////////////////////////////////////////////////////////////*/
+#item-search-form {
+  text-align: center;
+}
+
+#item-search-form div {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555; /* ラベルのテキストカラーを設定 */
+  text-align: left; /* 左寄せに修正 */
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.error {
+  color: red;
+  margin-top: 5px;
+  font-size: 12px;
+  text-align: left;
+}
+
+#item-searcher-btn {
+  width: 150px; /* ボタンの幅を設定 */
+  height: 50px; /* ボタンの高さを設定 */
+  font-size: 18px; /* ボタンのテキストサイズを設定 */
+  background-color: #3498db; /* アクティブ時の背景色を設定 */
+  color: #fff; /* アクティブ時のテキストカラーを設定 */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#item-searcher-btn:disabled {
+  background-color: #ccc; /* 非アクティブ時の背景色を設定 */
+  cursor: not-allowed;
+}
+
+/* 商品リストのスタイル */
+.itemSearch {
+  display: flex; /* レコードエリアを横並びに配置 */
+  border: 1px solid #ccc; /* 枠線 */
+  padding: 10px; /* 内側の余白 */
+  margin-bottom: 10px; /* 下部のマージン */
+  background-color: #f9f9f9; /* 背景色 */
+}
+
+/* 商品画像のスタイル */
+.itemSearch img {
+  width: 100px; /* 画像の幅を親要素に合わせる */
+  height: auto; /* 高さを自動調整 */
+}
+
+/* 商品名のスタイル */
+.itemSearch p {
+  margin: 5px 0; /* 上下のマージン */
+}

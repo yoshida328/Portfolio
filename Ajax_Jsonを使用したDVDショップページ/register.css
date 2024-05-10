@@ -1,0 +1,76 @@
+body{
+    height: 100vh;
+}
+form h1{
+    margin:revert;
+    margin-left: 150px;
+}
+label[for="name"],label[for="address"] {
+    margin-left: 80px;
+}
+label[for="password"] {
+    margin-left: 30px;
+}
+input[type="submit"]{
+    margin-left: 178px;
+    transition: all 0.5s;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+input[type="submit"]:hover{
+    transform: rotateX(360deg);
+    background-color: #0056b3;
+}
+.input-field {
+    border: 1px solid #ccc; /* 通常の枠の色 */
+    transition: border-color 0.3s; /* アニメーションの追加 */
+}
+
+.error {
+    background-color: #ffcccc; /* 背景色を赤にする */
+    border-color: red;
+}
+
+.example-text {
+    color: #999; /* 入力前の例の色 */
+}
+
+.valid {
+    background-color: #ccffcc; /* 背景色を緑にする */
+    border-color: green;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.8em;
+}
+label{
+    font-weight: bolder;
+    color:wheat;
+    -webkit-text-stroke: black 1.4px; 
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+.field-icon {
+    cursor: pointer;
+    color:wheat; 
+}
+#home-link {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background-color: #eff2f4;
+    color: #232121;
+    padding: 7px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+#home-link:hover {
+    background-color: #4e4f50;
+}

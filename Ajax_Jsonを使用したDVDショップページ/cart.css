@@ -1,0 +1,68 @@
+/* カートページ全体のスタイル */
+body {
+    font-family: Arial, sans-serif;
+    margin:0 auto;
+    padding:3px;
+    background-color: #ff9d00;
+    
+}
+
+.cart {
+    background-color: #ff9d00;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    width: 350px; /* カートの幅を500pxに設定 */
+    margin: 0 auto; 
+    text-align: center;
+}
+
+/* カート内アイテムのスタイル */
+.cart-item {
+    margin: 0 auto;
+    width: 50%;
+    margin-bottom: 5px; 
+}
+
+.cart-item img {
+    max-width: 100%;
+    margin-top: 2px;
+    height: auto;
+    border: black 2px solid;
+    border-radius: 10px;
+}
+
+.quantity {
+    width: 1cm;
+    text-align: center;
+}
+.qua,.h3,.pri,.remove-from-cart{
+    margin-top: 5px;
+}
+
+.remove-from-cart{
+    height: 22px;
+    width: 40px;
+    padding:0 0 0 2.5px;
+    border-radius: 5px;
+}
+.gouke{
+    margin:0 0 4px 0;
+}
+
+/* 注文ボタンのスタイル */
+#purchase-button {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#purchase-button:hover {
+    background-color: #45a049;
+}

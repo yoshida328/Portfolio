@@ -1,0 +1,34 @@
+body{
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.input-field {
+    border: 1px solid #ccc; /* 通常の枠の色 */
+    transition: border-color 0.3s; /* アニメーションの追加 */
+}
+
+.error {
+    background-color: #ffcccc; /* 背景色を赤にする */
+}
+
+.example-text {
+    color: #999; /* 入力前の例の色 */
+}
+
+input.valid {
+    background-color: #ccffcc; /* 背景色を緑にする */
+}
+
+.error-message {
+    color: red;
+    font-size: 0.8em;
+}
+label{
+    font-weight: bolder;
+    color:wheat;
+}
+h2{
+    margin: 10px;
+}

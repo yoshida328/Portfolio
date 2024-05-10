@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>映画管理システム</title>
+        <link rel="stylesheet" href="reset.css" />
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="genre-buttons">
+            <button class="genre" data-genre="comedy">コメディ</button>
+            <button class="genre" data-genre="action">アクション</button>
+            <button class="genre" data-genre="fantasy">ファンタジー</button>
+            <button class="genre" data-genre="romance">ロマンス</button>
+            <button class="genre" data-genre="horror">ホラー</button>
+            <button class="genre" data-genre="mystery">ミステリー</button>
+            <button class="genre" data-genre="sports">スポーツ</button>
+            <button class="genre" data-genre="war">戦争</button>
+            <!-- 他のジャンルのボタンも同様に追加 -->
+        </div>
+
+        <div id="movies-display"></div>
+
+        <script>
+            $(document).ready(function () {
+                $(".genre").click(function () {
+                    var genre = $(this).data("genre");
+                    $.ajax({
+                        url: "get_movies.php",
+                        type: "GET",
+                        data: { genre: genre },
+                        dataType: "json",
+                        success: function (movies) {
+                            $("#movies-display").empty();
+                            // 商品表示領域をクリアする前に、新しい映画の画像を追加
+                            $.each(movies, function (i, movie) {
+                                var absolutePath = movie.image_path; // 例: "C:\xampp\htdocs\Ajax_Json\movies_cinema\画像ファイル名.jpg"
+
+                                // 絶対パスから必要な部分を抽出してURLに変換
+                                var basePath = "http://localhost";
+                                var relativePath = absolutePath
+                                    .split("\\")
+                                    .slice(3)
+                                    .join("/"); // "Ajax_Json/movies_cinema/画像ファイル名.jpg"
+                                var imageUrl = basePath + "/" + relativePath;
+
+                                // imageUrlを使用して<img>タグを生成
+                                var movieHtml =
+                                    '<div class="movie">' +
+                                    '<img src="' +
+                                    imageUrl +
+                                    '" alt="' +
+                                    movie.title +
+                                    '">' +
+                                    "<h3>" +
+                                    movie.title +
+                                    "</h3>" +
+                                    "<p>価格: " +
+                                    movie.amount +
+                                    "</p>" +
+                                    '<p>在庫: <span class="stock" data-stock="' +
+                                    movie.stock +
+                                    '">' +
+                                    movie.stock +
+                                    "</span></p>" +
+                                    '<button class="decrease">-</button>' +
+                                    '<input type="text" class="quantity" value="0">' +
+                                    '<button class="increase">+</button>' +
+                                    '<button class="add-to-cart" data-id="' +
+                                    movie.id +
+                                    '" data-price="' +
+                                    movie.amount +
+                                    '">カートに追加</button>' +
+                                    "</div>";
+
+                                $("#movies-display").append(movieHtml);
+                            });
+
+                            // 数量増減ボタンのイベント
+                            $(".increase").click(function () {
+                                var input = $(this).prev(".quantity");
+                                var currentValue = parseInt(input.val());
+                                var stock = parseInt(
+                                    $(this)
+                                        .parent()
+                                        .find(".stock")
+                                        .data("stock")
+                                );
+                                if (currentValue < stock) {
+                                    input.val(currentValue + 1);
+                                }
+                            });
+
+                            $(".decrease").click(function () {
+                                var input = $(this).next(".quantity");
+                                var currentValue = parseInt(input.val());
+                                if (currentValue > 0) {
+                                    input.val(currentValue - 1);
+                                }
+                            });
+
+                            // カートに追加ボタンのイベント
+                            $(".add-to-cart").click(function () {
+                                var id = $(this).data("id");
+                                var quantity = $(this)
+                                    .parent()
+                                    .find(".quantity")
+                                    .val();
+                                var price = $(this).data("price");
+                                if (quantity > 0) {
+                                    $.ajax({
+                                        url: "add_to_cart.php",
+                                        type: "POST",
+                                        data: {
+                                            id: id,
+                                            quantity: quantity,
+                                            price: price,
+                                        },
+                                        success: function (response) {
+                                            // 成功したときの処理
+                                            console.log(response);
+                                            alert("カートに追加しました。");
+                                        },
+                                        error: function () {
+                                            // エラーが発生したときの処理
+                                            alert(
+                                                "カートに追加できませんでした。"
+                                            );
+                                        },
+                                    });
+                                } else {
+                                    alert("数量を選択してください。");
+                                }
+                            });
+                        },
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

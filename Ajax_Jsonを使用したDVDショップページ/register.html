@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="register.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        />
+        <title>会員登録フォーム</title>
+        <style>
+             body{
+                background-image:url(./dorag.webp);
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: top;
+            }
+        </style>      
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <form id="registration-form" action="register.php" method="post">
+            <h1>会員登録フォーム</h1>
+            <label for="name">名前:</label>
+            <input type="text" id="name" name="name" class="input-field" required /><br /><br />
+            <label for="address">住所:</label>
+            <input
+                type="text"
+                id="address"
+                name="address"class="input-field" 
+                required
+            /><br /><br />
+            <label for="email">メールアドレス:</label>
+            <input type="email" id="email" name="email" class="input-field" placeholder="メールアドレス" required />
+            <span id="email-error" class="error"></span><br /><br />
+            <label for="password">パスワード:</label>
+            <input
+                type="password"
+                id="password"
+                name="password"class="input-field" 
+                placeholder="パスワード"
+                required
+            /><span id="password-error" class="error"></span>
+            <span 
+                toggle="#password"
+                class="fa fa-fw fa-eye field-icon toggle-password">
+            </span><br /><br />
+            <input type="submit" value="登録" />
+            
+        </form>
+
+        <a id="home-link" href="index.php">HOME</a>
+        <script>
+             $(".toggle-password").click(function () {
+                    // 対応するパスワード入力フィールドを取得
+                    var input = $($(this).attr("toggle"));
+                    // パスワードの入力タイプを切り替える（テキスト ↔ パスワード）
+                    if (input.attr("type") === "password") {
+                        input.attr("type", "text");
+                    } else {
+                        input.attr("type", "password");
+                    }
+                });
+            $(document).ready(function () {
+                // メールアドレスのバリデーション関数
+                function isValidEmail(email) {
+                    // メールアドレスの基本的な形式チェック
+                    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    return emailPattern.test(email);
+                }
+
+                // パスワードのバリデーション関数
+                function isValidPassword(password) {
+                    // 半角英数字で8文字以上のパスワードかどうかをチェック
+                    var passwordPattern = /^(?=.*[0-9])(?=.*[a-zA-Z]).{6,}$/;
+                    return passwordPattern.test(password);
+                }
+
+                // 入力フィールドのinputイベントでバリデーションを行う
+                $(".input-field").on("input", function () {
+                    var inputId = $(this).attr("id");
+                    var inputValue = $(this).val();
+                    var errorMessageId = "#" + inputId + "-error";
+
+                    switch (inputId) {
+                        case "name":
+            if (inputValue.trim() === "") {
+                $(errorMessageId).text("名前を入力してください");
+                $(this).addClass("error").removeClass("valid");
+            } else {
+                $(errorMessageId).text("");
+                $(this).removeClass("error").addClass("valid");
+            }
+            break;
+        case "address":
+            if (inputValue.trim() === "") {
+                $(errorMessageId).text("住所を入力してください");
+                $(this).addClass("error").removeClass("valid");
+            } else {
+                $(errorMessageId).text("");
+                $(this).removeClass("error").addClass("valid");
+            }
+            break;
+                        case "email":
+                            if (!isValidEmail(inputValue)) {
+                                $(errorMessageId).text(
+                                    ""
+                                );
+                                $(this).addClass("error").removeClass("valid");
+                            } else {
+                                $(errorMessageId).text("");
+                                $(this).removeClass("error").addClass("valid");
+                            }
+                            break;
+                        case "password":
+                            if (!isValidPassword(inputValue)) {
+                                $(errorMessageId).text(
+                                    ""
+                                );
+                                $(this).addClass("error").removeClass("valid");
+                            } else {
+                                $(errorMessageId).text("");
+                                $(this).removeClass("error").addClass("valid");
+                            }
+                            break;
+                        default:
+                            // その他の入力フィールドに対するバリデーション処理
+                            break;
+                    }
+                });
+
+                // Ajaxリクエストの送信と成功時の処理
+                $("#registration-form").submit(function (event) {
+                    event.preventDefault(); // フォームのデフォルトの送信を防止
+
+                    // フォームデータを取得
+                    var formData = $(this).serialize();
+
+                    // AJAXを使用してサーバーにフォームデータを送信
+                    $.ajax({
+                        url: "register.php",
+                        type: "POST",
+                        data: formData,
+                        success: function (response) {
+                            // フォームの送信に成功した場合の処理
+                            alert("会員登録ありがとうございます！"); // ポップアップメッセージを表示
+                            // 他の任意の処理を追加
+                            window.location.href = "index.php";
+                        },
+                        error: function () {
+                            // フォームの送信に失敗した場合の処理
+                            alert(
+                                "会員登録に失敗しました。もう一度お試しください。"
+                            );
+                        },
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

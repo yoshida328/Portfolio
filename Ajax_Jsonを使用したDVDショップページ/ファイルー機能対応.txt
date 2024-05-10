@@ -1,0 +1,22 @@
+（商品管理　機能内訳）
+
+管理（表示／削除）
+index.php　商品管理メイン
+get_products.php　商品情報取得
+delete_product.php　削除
+
+登録
+item_regist.php　登録メイン
+regist_product.php
+
+検索
+item_search.php　検索メイン
+
+編集
+item_edit.php 編集メイン
+
+
+
+（共通）
+main.js
+style.css
